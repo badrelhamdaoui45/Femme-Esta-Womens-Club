@@ -26,6 +26,8 @@ export function Footer() {
               <p>22 RUE SAINT JACQUES</p>
               <p>13006 MARSEILLE</p>
               <p>France</p>
+              <p><a href="mailto:contact@lafemmeestawomensclub.com" className="hover:underline">contact@lafemmeestawomensclub.com</a></p>
+              <p><a href="http://lafemmeestawomensclub.com" target="_blank" rel="noopener noreferrer" className="hover:underline">lafemmeestawomensclub.com</a></p>
             </address>
           </div>
         </div>

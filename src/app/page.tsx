@@ -26,7 +26,7 @@ export default function Home() {
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-primary-foreground">
           <div className="container px-4 md:px-6">
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl font-headline">
-              LA FEMME ESTA L'ASSOCIATION
+              Femme Esta Womens Club
             </h1>
             <p className="mt-4 max-w-3xl text-lg md:text-xl">
               Bien-être des personnes seules ou isolées, particulièrement les femmes, pour leur permettre de s'assumer et reprendre confiance en elles.

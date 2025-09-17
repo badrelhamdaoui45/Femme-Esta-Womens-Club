@@ -6,7 +6,7 @@ export function Footer() {
       <div className="container py-8 px-4 md:px-6">
         <div className="grid gap-8 md:grid-cols-3">
           <div className="space-y-2">
-            <h4 className="font-bold text-lg font-headline">Femme Esta</h4>
+            <h4 className="font-bold text-lg font-headline">Femme Esta Womens Club</h4>
             <p className="text-sm text-muted-foreground max-w-sm">
               Soutenir les femmes seules ou isolées pour leur permettre de s'assumer, reprendre confiance et se réinsérer dans la société.
             </p>
@@ -30,7 +30,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t pt-6 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} LA FEMME ESTA L'ASSOCIATION. Tous droits réservés.</p>
+          <p>&copy; {new Date().getFullYear()} Femme Esta Womens Club. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

@@ -4,10 +4,14 @@ import placeholderData from '@/lib/placeholder-images.json';
 import { ArrowRight, CheckCircle, Info, Target } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import ImageGallery from '@/components/ImageGallery';
+import type { ImagePlaceholder } from '@/lib/placeholder-images';
 
 export default function Home() {
   const { placeholderImages } = placeholderData;
   const heroImage = placeholderImages.find((img) => img.id === 'home-hero');
+  const galleryImages: ImagePlaceholder[] = placeholderImages.filter(p => p.id.startsWith('gallery-'));
+
 
   return (
     <div className="flex flex-col">
@@ -117,6 +121,25 @@ export default function Home() {
                 <p className="text-xs text-muted-foreground">Activité : Autres organisations fonctionnant par adhésion volontaire</p>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" className="py-16 md:py-24 bg-background">
+        <div className="container px-4 md:px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight font-headline text-primary">
+              Galerie d'Images
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Revivez les moments forts de nos événements et activités à travers notre galerie de photos.
+            </p>
+            <Button asChild className="mt-6">
+              <Link href="/gallery">Voir toute la galerie <ArrowRight className="ml-2 h-5 w-5" /></Link>
+            </Button>
+          </div>
+          <div className="mt-12">
+            <ImageGallery images={galleryImages.slice(0, 6)} />
           </div>
         </div>
       </section>

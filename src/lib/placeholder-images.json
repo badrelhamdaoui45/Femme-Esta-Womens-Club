@@ -8,57 +8,51 @@
     },
     {
       "id": "gallery-1",
-      "description": "Members collaborating during a workshop.",
-      "imageUrl": "https://picsum.photos/seed/101/600/400",
-      "imageHint": "women workshop"
+      "description": "Gallery image 1",
+      "imageUrl": "/F1.png",
+      "imageHint": "gallery event"
     },
     {
       "id": "gallery-2",
-      "description": "A networking event hosted by the association.",
-      "imageUrl": "https://picsum.photos/seed/102/600/400",
-      "imageHint": "networking event"
+      "description": "Gallery image 2",
+      "imageUrl": "/F2.png",
+      "imageHint": "gallery event"
     },
     {
       "id": "gallery-3",
-      "description": "Guest speaker at a conference.",
-      "imageUrl": "https://picsum.photos/seed/103/600/400",
-      "imageHint": "conference speaker"
+      "description": "Gallery image 3",
+      "imageUrl": "/F3.png",
+      "imageHint": "gallery event"
     },
     {
       "id": "gallery-4",
-      "description": "Celebrating an achievement together.",
-      "imageUrl": "https://picsum.photos/seed/104/600/400",
-      "imageHint": "women celebrating"
+      "description": "Gallery image 4",
+      "imageUrl": "/F4.png",
+      "imageHint": "gallery event"
     },
     {
       "id": "gallery-5",
-      "description": "Outdoor team-building activity.",
-      "imageUrl": "https://picsum.photos/seed/105/600/400",
-      "imageHint": "team building"
+      "description": "Gallery image 5",
+      "imageUrl": "/F5.png",
+      "imageHint": "gallery event"
     },
     {
       "id": "gallery-6",
-      "description": "A casual social gathering.",
-      "imageUrl": "https://picsum.photos/seed/106/600/400",
-      "imageHint": "social gathering"
+      "description": "Gallery image 6",
+      "imageUrl": "/F6.png",
+      "imageHint": "gallery event"
     },
     {
       "id": "gallery-7",
-      "description": "Art and craft session.",
-      "imageUrl": "https://picsum.photos/seed/107/600/400",
-      "imageHint": "art workshop"
+      "description": "Gallery image 7",
+      "imageUrl": "/F7.png",
+      "imageHint": "gallery event"
     },
     {
       "id": "gallery-8",
-      "description": "Group discussion in a comfortable setting.",
-      "imageUrl": "https://picsum.photos/seed/108/600/400",
-      "imageHint": "group discussion"
-    },
-    {
-      "id": "gallery-9",
-      "description": "Volunteering for a community project.",
-      "imageUrl": "https://picsum.photos/seed/109/600/400",
-      "imageHint": "community volunteering"
+      "description": "Gallery image 8",
+      "imageUrl": "/F8.png",
+      "imageHint": "gallery event"
     }
   ]
 }

@@ -25,8 +25,9 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
                 <Image
                   src={image.imageUrl}
                   alt={image.description}
-                  fill
-                  className="object-cover"
+                  width={600}
+                  height={400}
+                  className="object-cover w-full h-full"
                   sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                   data-ai-hint={image.imageHint}
                 />
@@ -35,7 +36,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
             {selectedImage?.id === image.id && (
               <DialogContent className="sm:max-w-[80vw] p-0 border-0">
                   <Image
-                    src={selectedImage.imageUrl.replace('/600/400', '/1200/800')}
+                    src={selectedImage.imageUrl}
                     alt={selectedImage.description}
                     width={1200}
                     height={800}

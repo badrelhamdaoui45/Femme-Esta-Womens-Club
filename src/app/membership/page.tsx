@@ -57,7 +57,7 @@ export default function MembershipPage() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="relative h-64 md:h-80 w-full overflow-hidden rounded-md">
               <Image
-                src="https://picsum.photos/seed/110/600/400"
+                src="/F5.png"
                 alt="Women happily joining hands"
                 fill
                 className="object-cover"

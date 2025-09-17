@@ -68,7 +68,7 @@ export default function Home() {
             </div>
             <div className="relative h-80 w-full overflow-hidden rounded-lg shadow-lg">
                <Image
-                src="https://picsum.photos/seed/102/600/400"
+                src="/F2.png"
                 alt="Group of women supporting each other"
                 fill
                 className="object-cover"

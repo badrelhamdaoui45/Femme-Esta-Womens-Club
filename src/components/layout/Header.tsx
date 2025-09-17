@@ -25,7 +25,6 @@ const navItems: NavItem[] = [
   { title: 'Galerie', href: '/gallery', icon: Images },
   { title: 'Actualités', href: '/news', icon: Newspaper },
   { title: 'Contact', href: '/contact', icon: Mail },
-  { title: 'Admin', href: '/admin/content-generator', icon: Shield },
 ];
 
 export function Header() {

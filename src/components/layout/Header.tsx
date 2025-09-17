@@ -35,20 +35,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-card shadow-sm">
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2 font-bold font-headline text-lg text-primary">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-6 w-6 text-accent"
-          >
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            <path d="M12 11.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z" />
-            <path d="M12 12.5c-2.5 0-5 1.5-5 3v1.5c0 1 2 2 2h6c1 0 2-1 2-2V17c0-1.5-2.5-3-5-3z" />
-          </svg>
+          <Shield className="h-6 w-6 text-accent" />
           <span>Femme Esta</span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">

@@ -29,11 +29,15 @@ const navItems: NavItem[] = [
   { title: 'Contact', href: '/contact', icon: Mail },
 ];
 
+const directorNavItem: NavItem = { title: 'Portail', href: '/director', icon: UserCog };
+
+
 export function Header() {
   const pathname = usePathname();
   const { user } = useUser();
 
-  const allNavItems = user ? [...navItems, { title: 'Portail', href: '/director', icon: UserCog }] : navItems;
+  const allNavItems = [...navItems, directorNavItem];
+  const directorHref = user ? '/director' : '/login';
 
 
   return (
@@ -44,7 +48,7 @@ export function Header() {
           <span>Femme Esta Womens Club</span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
-          {allNavItems.map((item) => (
+          {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -56,6 +60,15 @@ export function Header() {
               {item.title}
             </Link>
           ))}
+           <Link
+              href={directorHref}
+              className={cn(
+                'transition-colors hover:text-primary',
+                pathname.startsWith('/director') || pathname.startsWith('/login') ? 'text-primary' : 'text-muted-foreground'
+              )}
+            >
+              {directorNavItem.title}
+            </Link>
         </nav>
         <div className="md:hidden">
           <Sheet>
@@ -67,7 +80,7 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right">
               <nav className="grid gap-6 text-lg font-medium mt-8">
-                {allNavItems.map((item) => (
+                {navItems.map((item) => (
                    <Link
                     key={item.href}
                     href={item.href}
@@ -80,6 +93,16 @@ export function Header() {
                     {item.title}
                   </Link>
                 ))}
+                <Link
+                    href={directorHref}
+                    className={cn(
+                      'flex items-center gap-4 px-2.5 transition-colors hover:text-primary',
+                      pathname.startsWith('/director') || pathname.startsWith('/login') ? 'text-primary' : 'text-muted-foreground'
+                    )}
+                  >
+                    <directorNavItem.icon className="h-5 w-5" />
+                    {directorNavItem.title}
+                  </Link>
               </nav>
             </SheetContent>
           </Sheet>

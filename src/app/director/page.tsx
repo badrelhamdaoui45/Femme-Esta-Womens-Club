@@ -41,7 +41,7 @@ export default function DirectorPage() {
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl font-headline text-primary">
                 Portail du Dirigeant
             </h1>
-            <p className="text-muted-foreground mt-2">Bienvenue, camapanaelisabeth@gmail.com</p>
+            <p className="text-muted-foreground mt-2">Bienvenue, Campana Elisabeth</p>
         </div>
         <Button onClick={handleLogout} variant="outline">
           Se déconnecter

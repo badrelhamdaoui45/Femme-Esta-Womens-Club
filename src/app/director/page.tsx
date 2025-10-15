@@ -1,46 +1,35 @@
 'use client';
 
-import { useUser } from '@/firebase';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FileText, GanttChartSquare, Activity, ShieldAlert } from 'lucide-react';
-import { getAuth, signOut } from 'firebase/auth';
 
 export default function DirectorPage() {
-  const { user, loading } = useUser();
   const router = useRouter();
-  const auth = getAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!loading && !user) {
+    const loggedIn = sessionStorage.getItem('director_logged_in') === 'true';
+    setIsLoggedIn(loggedIn);
+    setLoading(false);
+    if (!loggedIn) {
       router.push('/login');
     }
-  }, [user, loading, router]);
+  }, [router]);
 
-  const handleLogout = async () => {
-    await signOut(auth);
+  const handleLogout = () => {
+    sessionStorage.removeItem('director_logged_in');
     router.push('/login');
+    router.refresh(); // Force reload to update header state
   };
 
-  if (loading || !user) {
+  if (loading || !isLoggedIn) {
     return (
       <div className="flex h-screen items-center justify-center">
         <p>Loading...</p>
-      </div>
-    );
-  }
-
-  // Add a check to ensure only the specified director can access
-  if (user.email !== 'camapanaelisabeth@gmail.com') {
-     return (
-      <div className="flex h-screen items-center justify-center text-center">
-        <div>
-          <h1 className="text-3xl font-bold text-destructive">Accès non autorisé</h1>
-          <p className="mt-4 text-muted-foreground">Vous n'avez pas la permission de voir cette page.</p>
-          <Button onClick={() => router.push('/')} className="mt-6">Retour à l'accueil</Button>
-        </div>
       </div>
     );
   }
@@ -52,7 +41,7 @@ export default function DirectorPage() {
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl font-headline text-primary">
                 Portail du Dirigeant
             </h1>
-            <p className="text-muted-foreground mt-2">Bienvenue, {user.email}</p>
+            <p className="text-muted-foreground mt-2">Bienvenue, camapanaelisabeth@gmail.com</p>
         </div>
         <Button onClick={handleLogout} variant="outline">
           Se déconnecter

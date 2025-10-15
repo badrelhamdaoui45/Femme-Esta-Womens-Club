@@ -17,8 +17,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import type { NavItem } from '@/types';
 import { cn } from '@/lib/utils';
-import React from 'react';
-import { useUser } from '@/firebase';
+import React, { useEffect, useState } from 'react';
 
 const navItems: NavItem[] = [
   { title: 'Accueil', href: '/', icon: Home },
@@ -34,11 +33,14 @@ const directorNavItem: NavItem = { title: 'Portail', href: '/director', icon: Us
 
 export function Header() {
   const pathname = usePathname();
-  const { user } = useUser();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const allNavItems = [...navItems, directorNavItem];
-  const directorHref = user ? '/director' : '/login';
+  useEffect(() => {
+    // Since sessionStorage is a browser API, we need to check for it in useEffect
+    setIsLoggedIn(sessionStorage.getItem('director_logged_in') === 'true');
+  }, [pathname]); // Rerun on path change to update state
 
+  const directorHref = isLoggedIn ? '/director' : '/login';
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-card shadow-sm">

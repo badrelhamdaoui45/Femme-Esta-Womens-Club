@@ -16,22 +16,26 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { LogIn } from 'lucide-react';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
-import { useUser } from '@/firebase';
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 const formSchema = z.object({
   email: z.string().email({ message: "L'adresse email est invalide." }),
-  password: z.string().min(6, { message: 'Le mot de passe doit contenir au moins 6 caractères.' }),
+  password: z.string().min(1, { message: 'Le mot de passe est requis.' }),
 });
+
+const DIRECTOR_EMAIL = 'camapanaelisabeth@gmail.com';
+const DIRECTOR_PASS = 'Bad202?!@';
 
 export default function LoginPage() {
   const { toast } = useToast();
   const router = useRouter();
-  const auth = getAuth();
-  const { user, loading } = useUser();
-  const [isSignUp, setIsSignUp] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem('director_logged_in') === 'true') {
+      router.push('/director');
+    }
+  }, [router]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -41,46 +45,21 @@ export default function LoginPage() {
     },
   });
 
-  if(loading) {
-    return <div className="flex h-screen items-center justify-center"><p>Loading...</p></div>
-  }
-
-  if (user) {
-    router.push('/director');
-  }
-
-
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    try {
-      if (isSignUp) {
-        // You would want to restrict sign-up to only the director.
-        // This is a basic example. In a real app, you'd have a more secure way to create the initial admin user.
-        if (values.email !== 'camapanaelisabeth@gmail.com') {
-            toast({
-                variant: 'destructive',
-                title: 'Erreur',
-                description: 'Vous n\'êtes pas autorisé à créer un compte.',
-            });
-            return;
-        }
-        await createUserWithEmailAndPassword(auth, values.email, values.password);
-        toast({
-          title: 'Compte créé !',
-          description: 'Vous êtes maintenant connecté.',
-        });
-      } else {
-        await signInWithEmailAndPassword(auth, values.email, values.password);
-        toast({
-          title: 'Connexion réussie !',
-          description: 'Bienvenue sur le portail du dirigeant.',
-        });
-      }
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    if (values.email === DIRECTOR_EMAIL && values.password === DIRECTOR_PASS) {
+      sessionStorage.setItem('director_logged_in', 'true');
+      toast({
+        title: 'Connexion réussie !',
+        description: 'Bienvenue sur le portail du dirigeant.',
+      });
       router.push('/director');
-    } catch (error: any) {
+      // Force a reload to update header state
+      router.refresh(); 
+    } else {
       toast({
         variant: 'destructive',
         title: 'Erreur de connexion',
-        description: error.message,
+        description: 'Email ou mot de passe incorrect.',
       });
     }
   };
@@ -90,7 +69,7 @@ export default function LoginPage() {
       <Card className="max-w-md w-full">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold font-headline">Portail du Dirigeant</CardTitle>
-          <CardDescription>{isSignUp ? "Créez votre compte administrateur" : "Connectez-vous à votre espace"}</CardDescription>
+          <CardDescription>Connectez-vous à votre espace</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -123,16 +102,10 @@ export default function LoginPage() {
               />
               <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
                 <LogIn className="mr-2 h-4 w-4" />
-                {form.formState.isSubmitting ? 'Connexion...' : (isSignUp ? "Créer le compte" : "Se connecter")}
+                {form.formState.isSubmitting ? 'Connexion...' : 'Se connecter'}
               </Button>
             </form>
           </Form>
-           <p className="mt-4 text-center text-sm text-muted-foreground">
-            {isSignUp ? "Vous avez déjà un compte?" : "Première connexion?"}{' '}
-            <Button variant="link" className="p-0" onClick={() => setIsSignUp(!isSignUp)}>
-              {isSignUp ? "Se connecter" : "Créer un compte"}
-            </Button>
-          </p>
         </CardContent>
       </Card>
     </div>

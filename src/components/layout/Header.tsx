@@ -9,6 +9,7 @@ import {
   Newspaper,
   Shield,
   Users,
+  UserCog
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -17,6 +18,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import type { NavItem } from '@/types';
 import { cn } from '@/lib/utils';
 import React from 'react';
+import { useUser } from '@/firebase';
 
 const navItems: NavItem[] = [
   { title: 'Accueil', href: '/', icon: Home },
@@ -29,6 +31,10 @@ const navItems: NavItem[] = [
 
 export function Header() {
   const pathname = usePathname();
+  const { user } = useUser();
+
+  const allNavItems = user ? [...navItems, { title: 'Portail', href: '/director', icon: UserCog }] : navItems;
+
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-card shadow-sm">
@@ -38,7 +44,7 @@ export function Header() {
           <span>Femme Esta Womens Club</span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
-          {navItems.map((item) => (
+          {allNavItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -61,7 +67,7 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right">
               <nav className="grid gap-6 text-lg font-medium mt-8">
-                {navItems.map((item) => (
+                {allNavItems.map((item) => (
                    <Link
                     key={item.href}
                     href={item.href}
